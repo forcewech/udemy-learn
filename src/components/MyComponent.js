@@ -7,24 +7,24 @@ class MyComponent extends React.Component {
         address: 'Hoi Dan IT',
         age: 20,
     };
-    handleClick = (event) => {
-        console.log(">> click me my button")
-        console.log("My name is", this.state.name)
+    handleOnChangeInout = (event) => {
         this.setState({
-            name: 'Eric',
-            age: 19
+            name: event.target.value
         })
     }
-    handleOnMoverOver(event) {
-        console.log(event.pageX)
+    handOnSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state)
     }
     //JSX
     render() {
         return (
             <div>
                 My name is {this.state.name} and I'm {this.state.age}
-                <button onClick={(event) => { this.handleClick(event) }}>Click me</button>
-                <button onMouseOver={(event) => { this.handleOnMoverOver(event) }}>Hover me</button>
+                <form onSubmit={(event) => this.handOnSubmit(event)}>
+                    <input type="text" onChange={(event) => this.handleOnChangeInout(event)} />
+                    <button>Submit</button>
+                </form>
             </div>
         );
     }
